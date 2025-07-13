@@ -1,0 +1,2 @@
+# lp-inventario
+LP inventario
