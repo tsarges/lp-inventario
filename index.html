@@ -3,452 +3,1068 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Advogado Especialista em Inventário - Thiago Sarges</title>
-    <meta name="description" content="Assessoria jurídica para inventário judicial e extrajudicial em Mogi das Cruzes e região. Agilize a partilha de bens com um advogado com mais de 18 anos de experiência.">
-
+    <title>Advogado Especialista em Inventário – Thiago Sarges | Mogi das Cruzes</title>
+    <meta name="description" content="Assessoria jurídica para inventário judicial e extrajudicial em Mogi das Cruzes e região. Mais de 18 anos de experiência. Fale agora pelo WhatsApp.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* RESET BÁSICO E CONFIGURAÇÕES GERAIS */
+        /* ══════════════════════════════════════
+           TOKENS
+        ══════════════════════════════════════ */
         :root {
-            --cor-primaria: #0a2240; /* Azul escuro, sóbrio */
-            --cor-secundaria: #006effd5; /* Azul mais claro */
-            --cor-texto: #333333;
-            --cor-fundo: #f4f4f4;
-            --cor-branco: #ffffff;
+            --navy:        #08172e;
+            --blue:        #0f2d56;
+            --blue-mid:    #1a4480;
+            --blue-light:  #2460b0;
+            --gold:        #b8943f;
+            --gold-light:  #d4af6a;
+            --gold-pale:   #f0e0b0;
+            --white:       #ffffff;
+            --off-white:   #f7f5f0;
+            --text:        #1c2b3a;
+            --text-mid:    #4a5a6e;
+            --text-light:  #8494a6;
+            --border:      rgba(184,148,63,0.2);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        /* ══════════════════════════════════════
+           RESET & BASE
+        ══════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
 
         body {
-            font-family: 'Open Sans', sans-serif;
-            color: var(--cor-texto);
-            line-height: 1.6;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 28px;
         }
 
-        h1, h2 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--cor-primaria);
-            margin-bottom: 20px;
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1.15;
         }
 
-        section {
-            padding: 60px 0;
+        img { display: block; max-width: 100%; }
+
+        /* ══════════════════════════════════════
+           SCROLL REVEAL
+        ══════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* CABEÇALHO */
+        /* ══════════════════════════════════════
+           HEADER
+        ══════════════════════════════════════ */
         .header {
-            background: var(--cor-branco);
-            padding: 15px 0;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 900;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(184,148,63,0.15);
+            padding: 14px 0;
+            transition: box-shadow 0.3s;
+        }
+        .header.scrolled {
+            box-shadow: 0 4px 24px rgba(8,23,46,0.1);
+        }
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo img { height: 70px; }
+
+        .header-cta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88em;
+            letter-spacing: 0.04em;
+            padding: 11px 22px;
+            border-radius: 4px;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+        .header-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(184,148,63,0.35);
+        }
+        .header-cta svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+        /* ══════════════════════════════════════
+           HERO
+        ══════════════════════════════════════ */
+        #hero {
+            position: relative;
+            background-color: var(--navy);
+            overflow: hidden;
+            padding: 100px 0 90px;
         }
 
-        .navbar {
-            display: flex;
-            justify-content: center;
+        /* Diagonal gold line */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 42%;
+            height: 100%;
+            background: linear-gradient(145deg, var(--blue) 0%, var(--blue-mid) 100%);
+            clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        /* Subtle grid texture */
+        #hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(184,148,63,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(184,148,63,0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
             align-items: center;
         }
 
-        .logo img {
-            max-height: 100px; /* Ajuste a altura do seu logo */
-        }
-       
+        .hero-text {}
 
-        /* SEÇÃO PRINCIPAL (HERO) */
-        #hero {
-            background-image: linear-gradient(rgba(10, 34, 64, 0.8), rgba(10, 34, 64, 0.8)), url("images/foto-principal.jpg");
-            background-size: cover;
-            background-position: center;
-            color: var(--cor-branco);
-            text-align: center;
-            padding: 120px 0;
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.75em;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 22px;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            width: 32px; height: 1px;
+            background: var(--gold);
         }
 
         #hero h1 {
-            font-size: 2.8rem;
-            color: var(--cor-branco);
+            font-size: clamp(2.4rem, 4vw, 3.4rem);
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.12;
         }
 
-        #hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-            color: var(--cor-branco); /* Texto branco para contraste */
+        #hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
         }
 
-        .cta-button {
-            background-color: var(--cor-secundaria);
-            color: #ffffff; /* Texto branco */
-            padding: 15px 30px;
+        .hero-sub {
+            font-size: 1.05em;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.75;
+            margin-bottom: 40px;
+            max-width: 460px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
             text-decoration: none;
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
-            border-radius: 5px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            display: inline-block;
+            font-size: 0.92em;
+            letter-spacing: 0.03em;
+            padding: 15px 28px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
         }
-        
-        .cta-button:hover {
-            transform: scale(1.05);
-            background-color: #25d366; /* Cor de hover verde do WhatsApp */
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(184,148,63,0.4);
         }
+        .btn-primary svg { width: 18px; height: 18px; }
 
-        /* BOTÃO FLUTUANTE DO WHATSAPP */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50%;
-            width: 65px;
-            height: 65px;
-            display: flex;
-            justify-content: center;
+        .btn-ghost {
+            display: inline-flex;
             align-items: center;
-            font-size: 35px;
-            box-shadow: 3px 3px 15px rgba(0,0,0,0.3);
-            z-index: 100;
-            transition: transform 0.3s ease;
+            gap: 8px;
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            font-size: 0.88em;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255,255,255,0.25);
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
         }
-        .whatsapp-float svg {
-            width: 60%;
-            height: auto;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
+        .btn-ghost:hover { color: var(--gold-light); border-color: var(--gold); }
+
+        /* Hero image side */
+        .hero-visual {
+            position: relative;
         }
 
-        /* OUTRAS SEÇÕES */
-        .section-light {
-            background-color: var(--cor-branco);
+        .hero-img-wrap {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+        .hero-img-wrap img {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            filter: brightness(0.9);
         }
 
-        .section-dark {
-            background-color: var(--cor-fundo);
+        /* Gold frame accent */
+        .hero-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(184,148,63,0.3);
+            border-radius: 6px;
+            pointer-events: none;
         }
 
-        .grid-2 {
+        /* Stats badge */
+        .hero-badge {
+            position: absolute;
+            bottom: -24px;
+            left: -24px;
+            background: var(--white);
+            border-radius: 6px;
+            padding: 18px 24px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+            display: flex;
+            gap: 28px;
+        }
+        .badge-stat { text-align: center; }
+        .badge-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--blue);
+            line-height: 1;
+        }
+        .badge-label {
+            font-size: 0.7em;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 4px;
+        }
+        .badge-divider {
+            width: 1px;
+            background: #e8e0d0;
+            align-self: stretch;
+        }
+
+        /* ══════════════════════════════════════
+           TRUST BAR
+        ══════════════════════════════════════ */
+        #trust {
+            background: var(--off-white);
+            border-bottom: 1px solid #e8e0d0;
+            padding: 28px 0;
+        }
+        .trust-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85em;
+            color: var(--text-mid);
+            font-weight: 500;
+        }
+        .trust-item svg {
+            width: 20px; height: 20px;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* ══════════════════════════════════════
+           PROBLEMA
+        ══════════════════════════════════════ */
+        #problema {
+            padding: 90px 0;
+            background: var(--white);
+        }
+        .problema-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 70px;
+            align-items: center;
+        }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.72em;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+        .section-label::before {
+            content: '';
+            width: 28px; height: 1px;
+            background: var(--gold);
+        }
+        #problema h2 {
+            font-size: clamp(1.9rem, 3vw, 2.6rem);
+            color: var(--navy);
+            margin-bottom: 22px;
+        }
+        #problema p {
+            color: var(--text-mid);
+            line-height: 1.8;
+            font-size: 1em;
+        }
+
+        .pain-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 16px;
+        }
+        .pain-card {
+            background: var(--off-white);
+            border: 1px solid #ede8df;
+            border-radius: 8px;
+            padding: 22px 20px;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+        .pain-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 4px 20px rgba(184,148,63,0.1);
+        }
+        .pain-icon {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .pain-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .pain-card p {
+            font-size: 0.85em;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ══════════════════════════════════════
+           SOLUÇÃO
+        ══════════════════════════════════════ */
+        #solucao {
+            padding: 90px 0;
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+        #solucao::before {
+            content: '';
+            position: absolute;
+            top: -120px; right: -120px;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(26,68,128,0.6) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .solucao-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
             align-items: center;
         }
-
-        .section-image {
+        .solucao-img {
+            position: relative;
+        }
+        .solucao-img img {
             width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            height: 480px;
+            object-fit: cover;
+            border-radius: 6px;
+            filter: brightness(0.85);
+        }
+        .solucao-img::before {
+            content: '';
+            position: absolute;
+            top: -16px; left: -16px;
+            right: 16px; bottom: 16px;
+            border: 1px solid rgba(184,148,63,0.3);
+            border-radius: 6px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        #solucao .section-label { color: var(--gold-light); }
+        #solucao .section-label::before { background: var(--gold-light); }
+        #solucao h2 {
+            font-size: clamp(1.9rem, 3vw, 2.6rem);
+            color: var(--white);
+            margin-bottom: 22px;
+        }
+        #solucao > .container > .solucao-inner > .solucao-text > p {
+            color: rgba(255,255,255,0.68);
+            line-height: 1.8;
+            margin-bottom: 32px;
         }
 
-        ul.check-list {
+        .check-list {
             list-style: none;
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            color: rgba(255,255,255,0.82);
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .check-list li::before {
+            content: '';
+            width: 20px; height: 20px;
+            min-width: 20px;
+            background: rgba(184,148,63,0.15);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d4af6a'%3E%3Cpath d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 11px;
+            margin-top: 2px;
         }
 
-        ul.check-list li {
-            margin-bottom: 15px;
+        /* ══════════════════════════════════════
+           SOBRE
+        ══════════════════════════════════════ */
+        #sobre {
+            padding: 90px 0;
+            background: var(--white);
+        }
+        .sobre-inner {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 70px;
+            align-items: start;
+        }
+        .sobre-img-wrap {
+            position: relative;
+        }
+        .sobre-img-wrap img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 6px;
+            box-shadow: 0 20px 60px rgba(8,23,46,0.15);
+        }
+        .sobre-img-badge {
+            position: absolute;
+            bottom: 20px;
+            right: -20px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+            padding: 14px 20px;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(184,148,63,0.3);
+        }
+        .sobre-img-badge strong {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2em;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .sobre-img-badge span {
+            font-size: 0.72em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        #sobre h2 {
+            font-size: clamp(1.9rem, 3vw, 2.6rem);
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+        .oab-tag {
+            display: inline-block;
+            background: var(--off-white);
+            border: 1px solid #ede8df;
+            color: var(--text-mid);
+            font-size: 0.78em;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            padding: 6px 14px;
+            border-radius: 3px;
+            margin-bottom: 20px;
+        }
+        #sobre p {
+            color: var(--text-mid);
+            line-height: 1.85;
+            margin-bottom: 18px;
+        }
+        .sobre-values {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+        .value-chip {
             display: flex;
             align-items: center;
+            gap: 7px;
+            background: var(--off-white);
+            border: 1px solid #ede8df;
+            color: var(--text);
+            font-size: 0.82em;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 40px;
         }
-        
-        ul.check-list li::before {
-            content: '✓';
-            color: var(--cor-secundaria);
-            font-weight: bold;
-            font-size: 20px;
-            margin-right: 10px;
+        .value-chip::before {
+            content: '◆';
+            color: var(--gold);
+            font-size: 0.6em;
         }
 
-        /* SEÇÃO SOBRE */
-        #sobre .about-content {
+        /* ══════════════════════════════════════
+           FAQ
+        ══════════════════════════════════════ */
+        #faq {
+            padding: 90px 0;
+            background: var(--off-white);
+        }
+        .faq-header {
             text-align: center;
+            max-width: 640px;
+            margin: 0 auto 52px;
         }
-        #sobre img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 5px solid var(--cor-secundaria);
+        #faq h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--navy);
+            margin-bottom: 14px;
+        }
+        #faq .faq-header p {
+            color: var(--text-mid);
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 40px;
+        }
+        details.faq-item {
+            border-bottom: 1px solid #ddd8ce;
+            padding: 0;
+        }
+        summary.faq-question {
+            list-style: none;
+            cursor: pointer;
+            padding: 20px 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--navy);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            user-select: none;
+        }
+        summary.faq-question::-webkit-details-marker { display: none; }
+        summary.faq-question::after {
+            content: '+';
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.4em;
+            font-weight: 300;
+            color: var(--gold);
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+        details[open] summary.faq-question::after {
+            content: '−';
+        }
+        .faq-answer {
+            padding: 4px 0 20px;
+            color: var(--text-mid);
+            line-height: 1.8;
+            font-size: 0.93em;
         }
 
-        /* SEÇÃO CTA FINAL */
+        /* ══════════════════════════════════════
+           CTA FINAL
+        ══════════════════════════════════════ */
         #cta-final {
-            background-color: var(--cor-primaria);
-            color: var(--cor-branco);
+            padding: 90px 0;
+            background: linear-gradient(150deg, var(--navy) 0%, var(--blue) 100%);
+            position: relative;
+            overflow: hidden;
             text-align: center;
+        }
+        #cta-final::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(184,148,63,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(184,148,63,0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .cta-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 680px;
+            margin: 0 auto;
         }
         #cta-final h2 {
-            color: var(--cor-branco);
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            color: var(--white);
+            margin-bottom: 20px;
         }
-        
-        /* RODAPÉ */
-        footer {
-            background: #111;
-            color: #ccc;
-            text-align: center;
-            padding: 30px 0;
+        #cta-final h2 em {
+            font-style: italic;
+            color: var(--gold-light);
         }
-
-        footer a {
-            color: var(--cor-secundaria);
+        #cta-final p {
+            color: rgba(255,255,255,0.68);
+            font-size: 1.05em;
+            line-height: 1.75;
+            margin-bottom: 38px;
+        }
+        .cta-button-large {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
             text-decoration: none;
+            font-weight: 700;
+            font-size: 1em;
+            letter-spacing: 0.03em;
+            padding: 18px 36px;
+            border-radius: 4px;
+            box-shadow: 0 8px 32px rgba(184,148,63,0.35);
+            transition: all 0.3s ease;
+        }
+        .cta-button-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(184,148,63,0.5);
+        }
+        .cta-button-large svg { width: 20px; height: 20px; }
+        .cta-note {
+            margin-top: 18px;
+            font-size: 0.82em;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.04em;
         }
 
-        /* RESPONSIVIDADE (PARA CELULAR) */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 70px; /* Altura do header */
-                left: 0;
-                background-color: var(--cor-branco);
-                text-align: center;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                margin: 15px 0;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            #hero h1 {
-                font-size: 2rem;
-            }
-            
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-
-            .section-image {
-                margin-top: 30px;
-                order: 2; /* Faz a imagem ir para baixo no mobile */
-            }
-
-            .text-content {
-                order: 1;
-            }
+        /* ══════════════════════════════════════
+           FOOTER
+        ══════════════════════════════════════ */
+        footer {
+            background: #060f1c;
+            color: rgba(255,255,255,0.45);
+            padding: 40px 0 28px;
+            font-size: 0.86em;
         }
-/* ==================================== */
-/* ========== ESTILOS DO FAQ ========== */
-/* ==================================== */
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+        }
+        .footer-logo img { height: 52px; opacity: 0.7; }
+        .footer-divider {
+            width: 60px; height: 1px;
+            background: rgba(184,148,63,0.3);
+        }
+        footer p { line-height: 1.8; }
+        footer a { color: rgba(184,148,63,0.7); text-decoration: none; }
+        footer a:hover { color: var(--gold-light); }
+        .footer-dev {
+            margin-top: 8px;
+            font-size: 0.82em;
+            opacity: 0.5;
+        }
 
-.faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
+        /* ══════════════════════════════════════
+           WHATSAPP FLOAT
+        ══════════════════════════════════════ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            width: 62px; height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+            z-index: 800;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .whatsapp-float svg { width: 54%; height: auto; }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 32px rgba(37,211,102,0.55);
+        }
 
-.faq-item {
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
-}
+        /* ══════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════ */
+        @media (max-width: 900px) {
+            .hero-inner,
+            .problema-inner,
+            .solucao-inner,
+            .sobre-inner,
+            .faq-grid { grid-template-columns: 1fr; gap: 40px; }
 
-.faq-question {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--cor-primaria);
-    cursor: pointer;
-    list-style: none; /* Remove o marcador padrão */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+            .hero-visual { display: none; }
+            #hero { padding: 70px 0 60px; }
+            #hero h1 { font-size: 2.2rem; }
 
-.faq-question::-webkit-details-marker {
-    display: none; /* Remove o marcador no Chrome/Safari */
-}
+            .hero-badge { display: none; }
 
-/* Adiciona um ícone de '+' e '-' */
-.faq-question::after {
-    content: '+';
-    font-size: 1.8rem;
-    color: var(--cor-secundaria);
-    transition: transform 0.3s ease;
-}
+            .sobre-inner { grid-template-columns: 1fr; }
+            .sobre-img-wrap { max-width: 320px; }
+            .sobre-img-badge { right: 0; }
 
-.faq-item[open] .faq-question::after {
-    content: '−'; /* caractere de menos, não hífen */
-    transform: rotate(180deg);
-}
+            .trust-inner { gap: 24px; }
 
-.faq-answer {
-    padding: 20px 5px 10px 5px;
-    color: var(--cor-texto);
-    line-height: 1.7;
-}
+            .pain-cards { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 0 18px; }
+            section { padding: 60px 0; }
+            .header-cta span { display: none; }
+            .trust-inner { flex-direction: column; gap: 16px; align-items: flex-start; padding: 0 18px; }
+        }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/5511973407788?text=Olá!%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20um%20processo%20de%20inventário." 
-       target="_blank" class="whatsapp-float">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white">
-    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.068-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-0.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-</svg>
+    <!-- ── WHATSAPP FLOAT ── -->
+    <a href="https://wa.me/5511973407788?text=Olá!%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20um%20processo%20de%20inventário." target="_blank" class="whatsapp-float" aria-label="Falar pelo WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.068-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
     </a>
 
-    <header class="header">
-        <div class="container navbar">
+    <!-- ── HEADER ── -->
+    <header class="header" id="site-header">
+        <div class="container">
             <a href="#" class="logo">
-                <img src="images/logoSarges2025.png" alt="Logo [Sarges] Advocacia">
+                <img src="images/logoSarges2025.png" alt="Sarges Advocacia">
             </a>
-           
+            <a href="https://wa.me/5511973407788?text=Olá!%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20um%20processo%20de%20inventário." target="_blank" class="header-cta">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.068-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                <span>Fale via WhatsApp</span>
+            </a>
         </div>
     </header>
 
     <main>
+
+        <!-- ── HERO ── -->
         <section id="hero">
             <div class="container">
-                <h1>Assessoria Jurídica Especializada em Inventário em Mogi das Cruzes e Região.</h1>
-                <p>Regularize o patrimônio familiar com agilidade, segurança e sem dores de cabeça. Cuido de toda a burocracia para que você e sua família tenham paz neste momento delicado.</p>
-                <a href="https://wa.me/5511973407788?text=Olá!%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20um%20processo%20de%20inventário." target="_blank" class="cta-button">Fale com um Especialista via WhatsApp</a>
+                <div class="hero-inner">
+                    <div class="hero-text reveal">
+                        <p class="hero-eyebrow">Especialista em Inventário · Mogi das Cruzes</p>
+                        <h1>Regularize o patrimônio familiar com <em>segurança e agilidade.</em></h1>
+                        <p class="hero-sub">Cuido de toda a burocracia do inventário judicial e extrajudicial para que você e sua família tenham paz neste momento delicado.</p>
+                        <div class="hero-buttons">
+                            <a href="https://wa.me/5511973407788?text=Olá!%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20um%20processo%20de%20inventário." target="_blank" class="btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.068-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                                Falar com um Especialista
+                            </a>
+                            <a href="#sobre" class="btn-ghost">Conheça o Advogado ↓</a>
+                        </div>
+                    </div>
+                    <div class="hero-visual reveal" style="transition-delay:0.2s">
+                        <div class="hero-img-wrap">
+                            <img src="images/foto-principal.jpg" alt="Thiago Sarges – Advogado especialista em inventário">
+                        </div>
+                        <div class="hero-badge">
+                            <div class="badge-stat">
+                                <div class="badge-num">18+</div>
+                                <div class="badge-label">Anos de experiência</div>
+                            </div>
+                            <div class="badge-divider"></div>
+                            <div class="badge-stat">
+                                <div class="badge-num">OAB</div>
+                                <div class="badge-label">SP 259.005</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="problema" class="section-light">
+        <!-- ── TRUST BAR ── -->
+        <section id="trust">
             <div class="container">
-                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <h2>Lidar com um inventário não precisa ser um processo longo e desgastante.</h2>
-                    <p>Eu sei que a perda de um ente querido já é um momento extremamente difícil. Ter que lidar com a burocracia do inventário, a divisão de bens e os possíveis conflitos familiares pode tornar tudo ainda mais estressante. Muitos se sentem perdidos e preocupados com a complexidade, os custos e a demora do processo.</p>
+                <div class="trust-inner reveal">
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Mais de 18 anos de atuação
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                        Agilidade em todo o processo
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        Atendimento em todo o Brasil
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        Comunicação clara e objetiva
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="solucao" class="section-dark">
-            <div class="container grid-2">
-                <div class="text-content">
-                    <h2>Minha missão é simplificar o inventário para você.</h2>
-                    <p>Com mais de 18 anos de experiência na advocacia, desenvolvi um método de trabalho focado em resolver inventários de forma rápida e eficiente, sempre buscando a solução mais amigável e econômica para a sua família.</p>
-                    <ul class="check-list">
-                        <li>Atuação em Inventário Judicial e Extrajudicial (em cartório).</li>
-                        <li>Análise completa para definir a melhor estratégia para o seu caso.</li>
-                        <li>Organização de todos os documentos necessários.</li>
-                        <li>Comunicação clara e sem "juridiquês" em todas as etapas.</li>
-                    </ul>
+        <!-- ── PROBLEMA ── -->
+        <section id="problema">
+            <div class="container">
+                <div class="problema-inner">
+                    <div class="reveal">
+                        <p class="section-label">O Desafio</p>
+                        <h2>O inventário pode ser mais simples do que você imagina.</h2>
+                        <p>Eu sei que a perda de um ente querido já é um momento extremamente difícil. Ter que lidar com a burocracia, a divisão de bens e os possíveis conflitos familiares pode tornar tudo ainda mais estressante. Minha missão é tirar esse peso dos seus ombros.</p>
+                    </div>
+                    <div class="pain-cards reveal" style="transition-delay:0.15s">
+                        <div class="pain-card">
+                            <div class="pain-icon">📋</div>
+                            <h4>Excesso de Burocracia</h4>
+                            <p>Documentação complexa e exigências legais que parecem sem fim.</p>
+                        </div>
+                        <div class="pain-card">
+                            <div class="pain-icon">⏳</div>
+                            <h4>Risco de Multa</h4>
+                            <p>Prazo de 60 dias para iniciar o processo. O atraso gera multas de até 20% sobre o ITCMD.</p>
+                        </div>
+                        <div class="pain-card">
+                            <div class="pain-icon">🤝</div>
+                            <h4>Conflitos Familiares</h4>
+                            <p>Divergências entre herdeiros que travam o processo por anos.</p>
+                        </div>
+                        <div class="pain-card">
+                            <div class="pain-icon">💼</div>
+                            <h4>Bens Bloqueados</h4>
+                            <p>Sem inventário, imóveis não podem ser vendidos e contas ficam bloqueadas.</p>
+                        </div>
+                    </div>
                 </div>
-                <img src="images/foto-sobre2.JPG" alt="Advogado em reunião" class="section-image">
             </div>
         </section>
 
-        <section id="sobre" class="section-light">
-            <div class="container about-content">
-                 <img src="images/foto-solucao reserva.png" alt="Retrato de Thiago Sarges">
-                <h2>Um Advogado com 18 anos de Experiência ao seu Lado</h2>
-                <p style="max-width: 800px; margin: 0 auto;">Olá, eu sou <strong>Thiago Sarges</strong>, advogado inscrito na OAB/SP sob o nº <strong>259.005</strong>. Ao longo dos meus mais de 18 anos de carreira, entendi que a advocacia, especialmente em questões de família e herança, vai além dos processos. Trata-se de cuidar de pessoas em seus momentos de maior vulnerabilidade. Minha atuação é pautada pela ética, transparência e pela busca da paz para as famílias as quais que presto meu serviço, garantindo a defesa dos seus direitos e a tranquilidade que você merece.</p>
+        <!-- ── SOLUÇÃO ── -->
+        <section id="solucao">
+            <div class="container">
+                <div class="solucao-inner">
+                    <div class="solucao-img reveal">
+                        <img src="images/foto-sobre2.JPG" alt="Advogado em reunião com clientes">
+                    </div>
+                    <div class="solucao-text reveal" style="transition-delay:0.15s">
+                        <p class="section-label">A Solução</p>
+                        <h2>Um método focado em resolver com rapidez e eficiência.</h2>
+                        <p style="color:rgba(255,255,255,0.68); line-height:1.8; margin-bottom:32px;">Com mais de 18 anos de experiência, desenvolvi um método de trabalho focado em resolver inventários de forma ágil, sempre buscando a solução mais econômica e harmoniosa para a sua família.</p>
+                        <ul class="check-list">
+                            <li>Atuação em Inventário Judicial e Extrajudicial (em cartório).</li>
+                            <li>Análise completa para definir a melhor estratégia para o seu caso.</li>
+                            <li>Organização de todos os documentos necessários.</li>
+                            <li>Comunicação clara e sem "juridiquês" em todas as etapas.</li>
+                            <li>Atendimento presencial em Mogi das Cruzes e online em todo o Brasil.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
-        <section id="faq" class="section-light">
-    <div class="container">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 40px auto;">
-            <h2>Principais Dúvidas sobre Inventário</h2>
-            <p>Respostas diretas para as perguntas mais comuns que recebo.</p>
-        </div>
 
-        <div class="faq-container">
-            <details class="faq-item">
-                <summary class="faq-question">1. O que é inventário?</summary>
-                <div class="faq-answer">
-                    <p>É o procedimento utilizado para apurar os bens, direitos e dívidas da pessoa falecida para que, ao final, seja feita a transferência formal do patrimônio para os herdeiros. Sem o inventário, os bens ficam "bloqueados" e não podem ser vendidos ou gerenciados pelos herdeiros.</p>
+        <!-- ── SOBRE ── -->
+        <section id="sobre">
+            <div class="container">
+                <div class="sobre-inner">
+                    <div class="sobre-img-wrap reveal">
+                        <img src="images/foto-solucao reserva.png" alt="Thiago Sarges de Melo e Silva – Advogado">
+                        <div class="sobre-img-badge">
+                            <strong>18+</strong>
+                            <span>anos de carreira</span>
+                        </div>
+                    </div>
+                    <div class="sobre-text reveal" style="transition-delay:0.15s">
+                        <p class="section-label">Quem sou eu</p>
+                        <h2>Thiago Sarges de Melo e Silva</h2>
+                        <span class="oab-tag">OAB/SP nº 259.005</span>
+                        <p>Advogado formado desde 2006, atuando há mais de 18 anos com dedicação às causas de família, herança e sucessão. Ao longo da carreira, entendi que a advocacia, especialmente em questões patrimoniais e sucessórias, vai além dos processos — trata-se de cuidar de pessoas em seus momentos de maior vulnerabilidade.</p>
+                        <p>Sou um advogado que une o tecnicismo jurídico à clareza na comunicação, para que você entenda cada passo do processo e tome as melhores decisões para sua família.</p>
+                        <div class="sobre-values">
+                            <span class="value-chip">Ética</span>
+                            <span class="value-chip">Transparência</span>
+                            <span class="value-chip">Agilidade</span>
+                            <span class="value-chip">Modernidade</span>
+                            <span class="value-chip">Resultados</span>
+                        </div>
+                    </div>
                 </div>
-            </details>
+            </div>
+        </section>
 
-            <details class="faq-item">
-                <summary class="faq-question">2. Preciso mesmo de um advogado para fazer o inventário?</summary>
-                <div class="faq-answer">
-                    <p>Sim, a presença de um advogado é obrigatória por lei, tanto no inventário judicial (feito na Justiça) quanto no extrajudicial (feito em cartório). O advogado é essencial para garantir que o processo siga todas as regras legais, protegendo os direitos de todos os herdeiros e evitando problemas futuros.</p>
+        <!-- ── FAQ ── -->
+        <section id="faq">
+            <div class="container">
+                <div class="faq-header reveal">
+                    <p class="section-label" style="justify-content:center">Dúvidas Frequentes</p>
+                    <h2>Principais perguntas sobre inventário</h2>
+                    <p>Respostas diretas para as questões mais comuns que recebo dos clientes.</p>
                 </div>
-            </details>
+                <div class="faq-grid reveal" style="transition-delay:0.1s">
+                    <div>
+                        <details class="faq-item">
+                            <summary class="faq-question">O que é inventário?</summary>
+                            <div class="faq-answer">É o procedimento para apurar bens, direitos e dívidas do falecido e transferir formalmente o patrimônio aos herdeiros. Sem o inventário, os bens ficam bloqueados e não podem ser vendidos ou gerenciados.</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary class="faq-question">Preciso de advogado para fazer o inventário?</summary>
+                            <div class="faq-answer">Sim, a presença de um advogado é obrigatória por lei, tanto no inventário judicial quanto no extrajudicial. O advogado garante que o processo siga todas as regras legais, protegendo os direitos de todos os herdeiros.</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary class="faq-question">Qual a diferença entre judicial e extrajudicial?</summary>
+                            <div class="faq-answer">O <strong>extrajudicial</strong> é feito em cartório — mais rápido e econômico, mas exige herdeiros maiores, capazes e em acordo total. O <strong>judicial</strong> é necessário quando há herdeiros menores, discordâncias ou testamento. Analiso cada caso para indicar a melhor opção.</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary class="faq-question">O que acontece se perder o prazo?</summary>
+                            <div class="faq-answer">A lei exige que o inventário seja iniciado em até 60 dias após o falecimento. Em São Paulo, o atraso gera multa de até 20% sobre o valor do ITCMD, além de manter os bens bloqueados.</div>
+                        </details>
+                    </div>
+                    <div>
+                        <details class="faq-item">
+                            <summary class="faq-question">Quais são os custos envolvidos?</summary>
+                            <div class="faq-answer">Os custos se dividem em: <strong>ITCMD</strong> (imposto estadual de 4% sobre os bens em SP), <strong>custas do processo</strong> (cartório ou fórum) e <strong>honorários advocatícios</strong> definidos com transparência no início do trabalho, seguindo a tabela da OAB/SP.</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary class="faq-question">Quanto tempo demora o processo?</summary>
+                            <div class="faq-answer">O extrajudicial pode ser concluído em semanas ou poucos meses. O judicial é mais demorado, podendo levar meses a anos dependendo da complexidade. Atuo de forma diligente para acelerar ao máximo todas as etapas.</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary class="faq-question">Que documentos preciso para começar?</summary>
+                            <div class="faq-answer">Para a análise inicial: certidão de óbito, documentos pessoais do falecido e dos herdeiros. Documentos dos bens (matrícula de imóveis, documentos de veículos) também são necessários. Não se preocupe se não tiver tudo — oriento na busca da documentação.</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary class="faq-question">Vocês atendem fora de Mogi das Cruzes?</summary>
+                            <div class="faq-answer">Sim. Atendo presencialmente em Mogi das Cruzes e região, e de forma totalmente online para clientes em todo o Brasil. O inventário extrajudicial, em especial, pode ser conduzido sem necessidade de deslocamentos.</div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <details class="faq-item">
-                <summary class="faq-question">3. Qual a diferença entre inventário judicial e extrajudicial?</summary>
-                <div class="faq-answer">
-                    <p>O <strong>inventário extrajudicial</strong> é feito diretamente no cartório. É a via mais rápida e econômica, mas exige que todos os herdeiros sejam maiores de idade, capazes e estejam em total acordo com a divisão dos bens. Além disso, não pode haver testamento (com algumas exceções).<br>O <strong>inventário judicial</strong> ocorre perante um juiz e é necessário quando há herdeiros menores de idade, discordância entre as partes ou a existência de um testamento. Eu sempre analiso o caso para identificar a opção mais vantajosa para a família.</p>
-                </div>
-            </details>
-
-            <details class="faq-item">
-                <summary class="faq-question">4. Quais são os custos envolvidos no processo?</summary>
-                <div class="faq-answer">
-                    <p>Os custos se dividem principalmente em três categorias:<br>
-                       1. <strong>Imposto (ITCMD):</strong> É o Imposto de Transmissão Causa Mortis e Doação. No estado de São Paulo, a alíquota é de 4% sobre o valor dos bens.<br>
-                       2. <strong>Custas do Processo:</strong> São as taxas do cartório (no extrajudicial) ou do Fórum (no judicial).<br>
-                       3. <strong>Honorários Advocatícios:</strong> São os valores referentes ao meu trabalho, que são definidos com base na complexidade do caso e seguindo a tabela da OAB/SP. Apresento uma proposta clara e detalhada no início do nosso contato.</p>
-                </div>
-            </details>
-            
-            <details class="faq-item">
-                <summary class="faq-question">5. O que acontece se o inventário não for feito no prazo?</summary>
-                <div class="faq-answer">
-                    <p>A lei estabelece um prazo de 60 dias após o falecimento para dar entrada no inventário. Caso esse prazo não seja cumprido, o estado de São Paulo aplica uma multa sobre o valor do imposto (ITCMD), que pode chegar a 20%. Além disso, sem o inventário, os bens não podem ser vendidos, e o dinheiro em contas bancárias fica bloqueado.</p>
-                </div>
-            </details>
-            
-            <details class="faq-item">
-                <summary class="faq-question">6. Quanto tempo demora um processo de inventário?</summary>
-                <div class="faq-answer">
-                    <p>O <strong>inventário extrajudicial</strong> é muito rápido, podendo ser concluído em poucas semanas ou meses, dependendo da agilidade na reunião dos documentos. Já o <strong>inventário judicial</strong> é mais demorado, podendo levar de vários meses a alguns anos, a depender da complexidade e da vara onde o processo tramita. Minha função é atuar de forma diligente para acelerar ao máximo todas as etapas.</p>
-                </div>
-            </details>
-            
-            <details class="faq-item">
-                <summary class="faq-question">7. Que documentos eu preciso para começar?</summary>
-                <div class="faq-answer">
-                    <p>Para a nossa conversa inicial, os principais são: a certidão de óbito da pessoa falecida, seus documentos pessoais (RG/CPF) e os dos herdeiros. Documentos dos bens (como a matrícula de imóveis e documento de veículos) também são importantes. Não se preocupe se não tiver tudo; o primeiro passo é a análise do caso, e eu o orientarei na busca de toda a documentação.</p>
-                </div>
-            </details>
-
-        </div>
-    </div>
-</section>
+        <!-- ── CTA FINAL ── -->
         <section id="cta-final">
             <div class="container">
-                <h2>Vamos dar o primeiro passo para resolver seu inventário?</h2>
-                <p>Clique no botão abaixo para uma primeira conversa, sem compromisso, onde você poderá tirar suas dúvidas e entender os próximos passos.</p>
-                <br>
-                <a href="https://wa.me/5511973407788?text=Olá!%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20um%20processo%20de%20inventário." target="_blank" class="cta-button">Agendar Análise do Caso</a>
+                <div class="cta-inner reveal">
+                    <p class="section-label" style="justify-content:center; color:var(--gold-light)">Próximo Passo</p>
+                    <h2>Pronto para resolver o inventário da sua <em>família?</em></h2>
+                    <p>Entre em contato agora para uma primeira conversa sem compromisso. Analiso o seu caso, esclareço todas as dúvidas e apresento o caminho mais ágil e econômico para a sua situação.</p>
+                    <a href="https://wa.me/5511973407788?text=Olá!%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20um%20processo%20de%20inventário." target="_blank" class="cta-button-large">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.068-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                        Agendar Análise do Caso
+                    </a>
+                    <p class="cta-note">Resposta rápida · Primeira conversa sem compromisso</p>
+                </div>
             </div>
         </section>
+
     </main>
 
+    <!-- ── FOOTER ── -->
     <footer>
         <div class="container">
-            <p><strong>Thiago Sarges de Melo e Silva</strong> - Advogado</p>
-            <p>OAB/SP nº 259.005</p>
-            <p>E-mail: tsarges@yahoo.com.br</p>
-            <p>Atendimento em todo Brasil</p>
-            <br>
-            <p><small>Desenvolvido por Thiago Sarges com a ajuda da IA do Google. <a href="#">Política de Privacidade</a></small></p>
+            <div class="footer-inner">
+                <div class="footer-logo">
+                    <img src="images/logoSarges2025.png" alt="Sarges Advocacia">
+                </div>
+                <div class="footer-divider"></div>
+                <p>
+                    <strong style="color:rgba(255,255,255,0.7)">Thiago Sarges de Melo e Silva</strong> · Advogado · OAB/SP nº 259.005<br>
+                    E-mail: <a href="mailto:tsarges@yahoo.com.br">tsarges@yahoo.com.br</a> · Atendimento em todo o Brasil
+                </p>
+                <p class="footer-dev">© 2026 Sarges Advocacia · Todos os direitos reservados</p>
+            </div>
         </div>
     </footer>
 
+    <script>
+        // Header shadow on scroll
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
